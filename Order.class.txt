@@ -1,0 +1,93 @@
+==============================Order.class========================
+package buy;
+
+import java.io.Serializable;
+
+public class Order implements Serializable{
+
+	private String name;
+	private Integer attack;
+	private Integer spy;
+	private Integer destroy;
+	private Integer kill;
+	private Integer account;
+	private Integer password;
+	private Integer sum;
+	
+	public Order() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Order(String name, Integer attack, Integer spy, Integer destroy, Integer kill) {
+		super();
+		this.name = name;
+		this.attack = attack;
+		this.spy = spy;
+		this.destroy = destroy;
+		this.kill = kill;
+		
+		sum=attack*125000+spy*175000+destroy*600000+kill*1500000;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getAttack() {
+		return attack;
+	}
+	public void setAttack(Integer attack) {
+		this.attack = attack;
+	}
+	public Integer getSpy() {
+		return spy;
+	}
+	public void setSpy(Integer spy) {
+		this.spy = spy;
+	}
+	public Integer getDestroy() {
+		return destroy;
+	}
+	public void setDestroy(Integer destroy) {
+		this.destroy = destroy;
+	}
+	public Integer getKill() {
+		return kill;
+	}
+	public void setKill(Integer kill) {
+		this.kill = kill;
+	}
+	public Integer getAccount() {
+		return account;
+	}
+	public void setAccount(Integer account) {
+		this.account = account;
+	}
+	public Integer getPassword() {
+		return password;
+	}
+	public void setPassword(Integer password) {
+		this.password = password;
+	}
+	public Integer getSum() {
+		sum=attack*125000+spy*175000+destroy*600000+kill*1500000;
+		return sum;
+	}
+	public void setSum(Integer sum) {
+		
+		this.sum = sum;
+	}
+	public String show()
+	{
+		return "目標代號:"+name+
+				"\n肌肉警告:"+attack+
+				"\n間諜活動:"+spy+
+				"\n炸毀拆家:"+destroy+
+				"\n精準除滅:"+kill+
+				"\n總金額:"+sum;
+	}
+	
+	
+}
+

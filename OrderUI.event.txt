@@ -1,0 +1,66 @@
+==========================event======================================
+btnNewButton = new JButton("確定");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String Name=name.getText();
+				int Attack=Integer.parseInt(attack.getText());
+				int Spy=Integer.parseInt(spy.getText());
+				int Destroy=Integer.parseInt(destroy.getText());
+				int Kill=Integer.parseInt(kill.getText());
+				Order o=new Order(Name,Attack,Spy,Destroy,Kill);
+				
+				OrderDisplayUI t=new OrderDisplayUI();
+				t.setVisible(true);
+				dispose();
+				
+				FileOutputStream fos;
+				try {
+					fos = new FileOutputStream("c:/ABC/ex2.txt");
+					ObjectOutputStream oos=new ObjectOutputStream(fos);
+					oos.writeObject(new Order(Name,Attack,Spy,Destroy,Kill));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		btnNewButton.setBounds(140, 208, 87, 23);
+		panel.add(btnNewButton);
+		
+		JLabel lblNewLabel_1_3_1 = new JLabel("目標代號");
+		lblNewLabel_1_3_1.setFont(new Font("新細明體", Font.BOLD, 12));
+		lblNewLabel_1_3_1.setForeground(new Color(255, 255, 128));
+		lblNewLabel_1_3_1.setBounds(66, 44, 60, 15);
+		panel.add(lblNewLabel_1_3_1);
+		
+		lblClock = new JLabel("Clock");
+		lblClock.setForeground(new Color(255, 255, 0));
+		lblClock.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblClock.setFont(new Font("新細明體", Font.BOLD, 15));
+		lblClock.setBounds(236, 210, 168, 21);
+		panel.add(lblClock);
+		Calendar cal=new GregorianCalendar();
+		int day=cal.get(Calendar.DAY_OF_MONTH);
+		int month=cal.get(Calendar.MONTH);
+		int year=cal.get(Calendar.YEAR);
+		
+		int second=cal.get(Calendar.SECOND);
+		int minute=cal.get(Calendar.MINUTE);
+		int hour=cal.get(Calendar.HOUR);
+		
+		lblClock.setText(year+"/"+month+"/"+day+"  "+hour+":"+minute+":"+second);
+		
+		btnNewButton_1 = new JButton("重置");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				OrderUI t=new OrderUI();
+				t.setVisible(true);
+				dispose();
+			}

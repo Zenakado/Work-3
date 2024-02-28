@@ -1,0 +1,99 @@
+===================event====================================
+JButton output = new JButton("顯示訂單");
+		output.setBounds(16, 207, 96, 25);
+		output.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				FileInputStream fis;
+				try {
+					fis = new FileInputStream("c:/ABC/ex2.txt");
+					ois=new ObjectInputStream(fis);
+					o=(Order)ois.readObject();
+					
+						textArea.setText(o.show());
+						
+					
+				
+				} catch (IOException | ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				
+			}
+		});
+
+	
+		output.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		panel.add(output);
+		
+		JButton btnNewButton_3 = new JButton("列印");
+		btnNewButton_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					textArea.print();
+				} catch (PrinterException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+JButton clear = new JButton("付款");
+		clear.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			int Pay=Integer.parseInt(pay.getText());
+
+				textArea_1.setText("付款金額:"+"\t"+Pay+
+						"\n找回金額共:"+"\t"+(Pay-o.getSum())+
+						"\n\n千元鈔張數:\t"+(Pay-o.getSum())/1000%1000+
+						"\n百元鈔張數:\t"+((Pay-o.getSum())-(Pay-o.getSum())/1000%1000*1000)/100%100+
+						"\n零錢:\t"+(Pay-o.getSum())%1000%100
+						);
+			}
+		});
+		clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		clear.setBounds(317, 47, 87, 23);
+		panel.add(clear);
+
+lblClock = new JLabel("Clock");
+		lblClock.setForeground(new Color(255, 255, 0));
+		lblClock.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblClock.setFont(new Font("新細明體", Font.BOLD, 15));
+		lblClock.setBounds(236, 210, 168, 21);
+		panel.add(lblClock);
+		Calendar cal=new GregorianCalendar();
+		int day=cal.get(Calendar.DAY_OF_MONTH);
+		int month=cal.get(Calendar.MONTH);
+		int year=cal.get(Calendar.YEAR);
+		
+		int second=cal.get(Calendar.SECOND);
+		int minute=cal.get(Calendar.MINUTE);
+		int hour=cal.get(Calendar.HOUR);
+		
+		lblClock.setText(year+"/"+month+"/"+day+"  "+hour+":"+minute+":"+second);
+		
+		JButton btnNewButton_3_1 = new JButton("離開");
+		btnNewButton_3_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+
+JButton btnNewButton_3_1_1 = new JButton("完成");
+		btnNewButton_3_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Done d=new Done();
+				d.setVisible(true);
+				dispose();
+			}
+		});

@@ -1,0 +1,17 @@
+==========================event======================================
+JButton btnNewButton = new JButton("登入");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (account.getText().contentEquals("hunter") == true && password.getText().contentEquals("hunter") == true )
+				{
+				OrderUI x = new OrderUI();
+				x.setVisible(true);
+				dispose();
+				}
+				else
+				{
+					password.setText("帳號或密碼錯誤!請重新輸入");
+				}
+				
+			}
+		});
